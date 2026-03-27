@@ -506,7 +506,7 @@ function FreeTextMode() {
         <div className="ft-example">{q.example}</div>
         <div className="ft-input-row">
           <input ref={inputRef} className={"ft-input" + (submitted ? (isCorrect ? " ft-correct" : " ft-wrong") : "")}
-            type="text" placeholder="Stilmittel eingeben\u2026" value={input}
+            type="text" placeholder="Stilmittel eingeben" value={input}
             onChange={e => setInput(e.target.value)}
             onKeyDown={e => { if (e.key==="Enter" && !submitted) checkAnswer(); if (e.key==="Enter" && submitted) nextQ(); }}
             disabled={submitted} autoFocus />
