@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rhetorische Stilmittel – Übungsapp</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #F7F6F3;
+    --surface: #FFFFFF;
+    --text: #1A1A1A;
+    --text-soft: #6B6B6B;
+    --accent: #2D5A27;
+    --accent-light: #E8F0E7;
+    --accent-hover: #3D7A35;
+    --border: #E5E3DE;
+    --correct: #2D5A27;
+    --correct-bg: #E8F0E7;
+    --wrong: #9E2B2B;
+    --wrong-bg: #FDEAEA;
+    --radius: 12px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+  .app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 16px 60px;
+  }
+  .nav-header {
+    width: 100%;
+    max-width: 720px;
+    margin-bottom: 32px;
+    text-align: center;
+  }
+  .nav-header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+  }
+  .nav-header p {
+    color: var(--text-soft);
+    font-size: 14px;
+  }
+  .mode-tabs {
+    display: flex;
+    gap: 6px;
+    margin-top: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 4px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .mode-tab {
+    padding: 8px 18px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-soft);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .mode-tab:hover { color: var(--text); background: var(--bg); }
+  .mode-tab.active { background: var(--accent); color: #fff; }
+  .card-area {
+    width: 100%;
+    max-width: 620px;
+    margin-top: 8px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 36px 32px;
+    box-shadow: var(--shadow-sm);
+  }
+  .progress-bar-track {
+    width: 100%;
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: width 0.4s ease;
+  }
+  .card-counter {
+    font-size: 12px;
+    color: var(--text-soft);
+    margin-bottom: 16px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .flashcard-front { text-align: center; padding: 20px 0; }
+  .flashcard-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    font-weight: 400;
+    margin-bottom: 16px;
+  }
+  .flashcard-hint { font-size: 13px; color: var(--text-soft); cursor: pointer; }
+  .flashcard-back { animation: fadeUp 0.25s ease; }
+  .flashcard-def {
+    font-size: 17px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .flashcard-example-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-soft);
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .flashcard-examples { display: flex; flex-direction: column; gap: 8px; }
+  .flashcard-examples span {
+    font-size: 15px;
+    color: var(--text-soft);
+    line-height: 1.5;
+    padding-left: 12px;
+    border-left: 2px solid var(--accent-light);
+  }
+  .mc-example, .ft-example {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    margin-bottom: 28px;
+    padding: 16px 0;
+  }
+  .mc-options { display: flex; flex-direction: column; gap: 10px; }
+  .mc-option {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.15s;
+  }
+  .mc-option:hover:not(.mc-selected):not(.mc-correct):not(.mc-wrong) {
+    border-color: var(--accent);
+    background: var(--accent-light);
+  }
+  .mc-option.mc-correct { border-color: var(--correct); background: var(--correct-bg); color: var(--correct); }
+  .mc-option.mc-wrong { border-color: var(--wrong); background: var(--wrong-bg); color: var(--wrong); }
+  .ft-input-row { display: flex; gap: 10px; }
+  .ft-input {
+    flex: 1;
+    padding: 14px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    background: var(--surface);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .ft-input:focus { border-color: var(--accent); }
+  .ft-input.ft-correct { border-color: var(--correct); background: var(--correct-bg); }
+  .ft-input.ft-wrong { border-color: var(--wrong); background: var(--wrong-bg); }
+  .feedback {
+    margin-top: 16px;
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    animation: fadeUp 0.2s ease;
+  }
+  .feedback.correct { background: var(--correct-bg); color: var(--correct); }
+  .feedback.wrong { background: var(--wrong-bg); color: var(--wrong); }
+  .btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-hover); }
+  .btn-ghost { background: transparent; color: var(--text-soft); border: 1.5px solid var(--border); }
+  .btn-ghost:hover { border-color: var(--text-soft); color: var(--text); }
+  .btn-row { display: flex; justify-content: space-between; margin-top: 24px; gap: 10px; }
+  .results { text-align: center; padding: 24px 0; }
+  .results-score {
+    font-family: 'DM Serif Display', serif;
+    font-size: 56px;
+    font-weight: 400;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .results-label { font-size: 14px; color: var(--text-soft); margin-bottom: 28px; }
+  .results-message { font-size: 18px; margin-bottom: 28px; line-height: 1.5; }
+  .settings-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .setting-label { font-size: 13px; color: var(--text-soft); font-weight: 500; }
+  .setting-select {
+    padding: 6px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+    outline: none;
+  }
+  .setting-select:focus { border-color: var(--accent); }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-in { animation: fadeUp 0.3s ease; }
+  @media (max-width: 600px) {
+    .card { padding: 24px 20px; }
+    .flashcard-name { font-size: 26px; }
+    .mc-example, .ft-example { font-size: 18px; }
+    .ft-input-row { flex-direction: column; }
+    .mode-tab { padding: 8px 12px; font-size: 13px; }
+    .nav-header h1 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
+<script type="text/babel">
+const { useState, useEffect, useCallback, useRef } = React;
+
+const STILMITTEL = [
+  { name: "Alliteration", definition: "Wiederholung des gleichen Anfangslautes bei aufeinanderfolgenden Wörtern.", examples: ["\u201eMilch macht müde Männer munter.\u201c", "\u201eKind und Kegel\u201c", "\u201eHaus und Hof\u201c", "\u201eWind und Wetter\u201c", "\u201eÜber Stock und Stein\u201c", "\u201eMit Mann und Maus\u201c"] },
+  { name: "Anapher", definition: "Wiederholung eines Wortes oder einer Wortgruppe am Anfang aufeinanderfolgender Sätze oder Verse.", examples: ["\u201eIch bin müde. Ich bin erschöpft. Ich bin am Ende.\u201c", "\u201eEr rannte los. Er rannte schnell. Er rannte um sein Leben.\u201c", "\u201eWer nie sein Brot mit Tränen aß, / Wer nie die kummervollen Nächte\u2026\u201c", "\u201eDas Wasser rauscht. Das Wasser schwoll.\u201c"] },
+  { name: "Antithese", definition: "Gegenüberstellung gegensätzlicher Begriffe oder Gedanken.", examples: ["\u201eDer Geist ist willig, aber das Fleisch ist schwach.\u201c", "\u201eKrieg und Frieden\u201c", "\u201eHimmel und Hölle\u201c", "\u201eJung und Alt, Arm und Reich\u201c", "\u201eDer Wahn ist kurz, die Reu ist lang.\u201c"] },
+  { name: "Chiasmus", definition: "Überkreuzstellung von syntaktisch oder inhaltlich einander entsprechenden Satzgliedern.", examples: ["\u201eDie Kunst ist lang, und kurz ist unser Leben.\u201c", "\u201eIch schlafe am Tag, in der Nacht wache ich.\u201c", "\u201eEng ist die Welt und das Gehirn ist weit.\u201c", "\u201eDie Welt ist groß, klein ist der Verstand.\u201c"] },
+  { name: "Ellipse", definition: "Auslassung eines Satzteils, der zum Verständnis nicht unbedingt nötig ist.", examples: ["\u201eJe früher, desto besser.\u201c", "\u201eEnde gut, alles gut.\u201c", "\u201eWas nun?\u201c", "\u201eErst die Arbeit, dann das Vergnügen.\u201c"] },
+  { name: "Euphemismus", definition: "Beschönigende Umschreibung eines unangenehmen oder anstößigen Ausdrucks.", examples: ["\u201eEr ist von uns gegangen.\u201c (statt: Er ist gestorben.)", "\u201eSie ist in anderen Umständen.\u201c (statt: Sie ist schwanger.)", "\u201eFreisetzung von Mitarbeitern\u201c (statt: Entlassung)", "\u201eDie letzte Reise antreten\u201c", "\u201eKollateralschaden\u201c (statt: zivile Opfer)"] },
+  { name: "Hyperbel", definition: "Starke Übertreibung eines Ausdrucks.", examples: ["\u201eIch habe dir das schon tausendmal gesagt!\u201c", "\u201eEin Meer von Tränen\u201c", "\u201eTodmüde sein\u201c", "\u201eBlitzschnell\u201c", "\u201eDas dauert ja eine Ewigkeit!\u201c", "\u201eIch sterbe vor Hunger!\u201c"] },
+  { name: "Ironie", definition: "Aussage, bei der das Gegenteil des Gesagten gemeint ist.", examples: ["\u201eDas hast du ja toll hinbekommen!\u201c (bei einem Fehler)", "\u201eNa, das ist ja eine schöne Bescherung!\u201c", "\u201eSchönes Wetter heute!\u201c (bei Regen)", "\u201eDanke für die pünktliche Lieferung!\u201c (nach wochenlanger Verspätung)"] },
+  { name: "Klimax", definition: "Stufenweise Steigerung von Ausdrücken.", examples: ["\u201eEr kam, sah und siegte.\u201c", "\u201eHeute back ich, morgen brau ich, übermorgen hol ich der Königin ihr Kind.\u201c", "\u201eIch bin erstaunt, erschrocken, entsetzt!\u201c", "\u201eEr war unzufrieden, wütend, rasend.\u201c"] },
+  { name: "Litotes", definition: "Untertreibung oder doppelte Verneinung, oft zur Hervorhebung.", examples: ["\u201eDas war nicht schlecht.\u201c (= Es war gut.)", "\u201eEr ist nicht gerade ein Genie.\u201c", "\u201eNicht übel!\u201c (= Sehr gut!)", "\u201eSie ist nicht unhübsch.\u201c", "\u201eDas ist keine kleine Leistung.\u201c"] },
+  { name: "Metapher", definition: "Bildlicher Ausdruck, bei dem ein Wort aus einem Bedeutungszusammenhang in einen anderen übertragen wird.", examples: ["\u201eDas Feuer der Leidenschaft\u201c", "\u201eJemandem das Herz brechen\u201c", "\u201eRabeneltern\u201c", "\u201eWüstenschiff\u201c (= Kamel)", "\u201eLöwe\u201c (für einen mutigen Menschen)", "\u201eAm Fuße des Berges\u201c", "\u201eDer Zahn der Zeit\u201c"] },
+  { name: "Metonymie", definition: "Ersetzung eines Begriffs durch einen anderen, der in sachlicher Beziehung zu ihm steht.", examples: ["\u201eDas Weiße Haus erklärte\u2026\u201c (statt: der Präsident)", "\u201eIch lese Goethe.\u201c (statt: ein Werk von Goethe)", "\u201eEr trinkt gern ein Glas.\u201c (statt: den Inhalt des Glases)", "\u201eBerlin hat entschieden.\u201c (statt: die Regierung)"] },
+  { name: "Neologismus", definition: "Wortneuschöpfung oder Neubildung eines Wortes.", examples: ["\u201eSmombie\u201c (Smartphone + Zombie)", "\u201eBrexiteer\u201c", "\u201eTwitterverse\u201c", "\u201eFremdschämen\u201c", "\u201eGutmensch\u201c"] },
+  { name: "Onomatopoesie", definition: "Lautmalerei \u2013 Nachahmung natürlicher Laute durch Worte.", examples: ["\u201eDer Kuckuck ruft.\u201c", "\u201eEs knistert im Kamin.\u201c", "\u201eDie Bienen summen.\u201c", "\u201eDas Wasser plätschert.\u201c", "\u201eDie Katze miaut.\u201c", "\u201eDie Tür knarrt.\u201c"] },
+  { name: "Oxymoron", definition: "Verbindung zweier sich widersprechender Begriffe.", examples: ["\u201eBittersüß\u201c", "\u201eAlter Knabe\u201c", "\u201eOffenes Geheimnis\u201c", "\u201eBeredtes Schweigen\u201c", "\u201eStummer Schrei\u201c", "\u201eKalte Glut\u201c"] },
+  { name: "Parallelismus", definition: "Wiederholung gleicher syntaktischer Strukturen in aufeinanderfolgenden Sätzen.", examples: ["\u201eHeiß ist die Liebe, kalt ist der Schnee.\u201c", "\u201eDer Vater lacht, die Mutter weint.\u201c", "\u201eReden ist Silber, Schweigen ist Gold.\u201c", "\u201eKleine Kinder, kleine Sorgen \u2013 große Kinder, große Sorgen.\u201c"] },
+  { name: "Personifikation", definition: "Vermenschlichung von Gegenständen, Tieren oder abstrakten Begriffen.", examples: ["\u201eDie Sonne lacht.\u201c", "\u201eDer Wind flüstert.\u201c", "\u201eDie Zeit heilt alle Wunden.\u201c", "\u201eDer Tod klopft an die Tür.\u201c", "\u201eMutter Natur\u201c", "\u201eVater Staat\u201c"] },
+  { name: "Pleonasmus", definition: "Verwendung bedeutungsgleicher oder -ähnlicher Wörter zur Verstärkung.", examples: ["\u201eWeißer Schimmel\u201c", "\u201eAlter Greis\u201c", "\u201eRunde Kugel\u201c", "\u201eTote Leiche\u201c", "\u201ePersönlich anwesend\u201c"] },
+  { name: "Rhetorische Frage", definition: "Frage, auf die keine Antwort erwartet wird, da sie offensichtlich ist.", examples: ["\u201eBin ich denn der Einzige, der hier arbeitet?\u201c", "\u201eHaben wir nicht alle schon mal einen Fehler gemacht?\u201c", "\u201eWer will das schon?\u201c", "\u201eIst das nicht wunderbar?\u201c"] },
+  { name: "Symbol", definition: "Ein konkreter Gegenstand, der für eine abstrakte Idee steht.", examples: ["Taube = Frieden", "Herz = Liebe", "Wasser = Leben, Reinigung", "Kreuz = Christentum, Opfer", "Krone = Macht, Herrschaft"] },
+  { name: "Vergleich", definition: "Verknüpfung zweier Bereiche durch \u201ewie\u201c oder \u201eals\u201c.", examples: ["\u201eStark wie ein Löwe\u201c", "\u201eSchnell wie der Wind\u201c", "\u201eEr kämpfte wie ein Held.\u201c", "\u201eKalt wie Eis\u201c", "\u201eSie ist schön wie eine Rose.\u201c", "\u201eHart wie Stahl\u201c"] },
+  { name: "Akkumulation", definition: "Aufzählung mehrerer Begriffe zu einem Oberbegriff.", examples: ["\u201eNun ruhen alle Wälder, / Vieh, Menschen, Städt und Felder.\u201c", "\u201eSonne, Mond und Sterne\u201c", "\u201eFeld, Wald und Wiese\u201c", "\u201eFeuer, Wasser, Erde, Luft\u201c"] },
+  { name: "Asyndeton", definition: "Aufzählung ohne Konjunktionen (Bindewörter).", examples: ["\u201eEr kam, sah, siegte.\u201c", "\u201eAlles rennet, rettet, flüchtet.\u201c", "\u201eHeute, morgen, übermorgen.\u201c", "\u201eFriede, Freude, Eierkuchen.\u201c"] },
+  { name: "Polysyndeton", definition: "Wiederholte Verknüpfung von Satzgliedern durch die gleiche Konjunktion.", examples: ["\u201eUnd es wallet und siedet und brauset und zischt.\u201c", "\u201eUnd der Regen fällt und der Wind weht und die Blätter treiben.\u201c", "\u201eOder heute oder morgen oder übermorgen.\u201c"] },
+  { name: "Tautologie", definition: "Wiederholung eines Sachverhalts mit sinnverwandten Wörtern.", examples: ["\u201eImmer und ewig\u201c", "\u201eVoll und ganz\u201c", "\u201eNie und nimmer\u201c", "\u201eAngst und Bange\u201c", "\u201eHegen und pflegen\u201c"] },
+  { name: "Enjambement", definition: "Zeilensprung \u2013 ein Satz wird über das Versende hinaus in die nächste Zeile fortgeführt.", examples: ["\u201eDer Nebel drückt / die Dächer schwer\u2026\u201c", "\u201eIch ging im Feld / und sah die Blumen stehen.\u201c", "\u201eAm Brunnen vor / dem Tore\u2026\u201c"] },
+  { name: "Synekdoche", definition: "Ein Teil steht für das Ganze oder umgekehrt.", examples: ["\u201ePro Kopf\u201c (statt: pro Person)", "\u201eUnter einem Dach leben\u201c (statt: in einem Haus)", "\u201eEr hat kein Dach über dem Kopf.\u201c", "\u201eDeutschland spielt gegen Frankreich.\u201c (statt: die Nationalmannschaften)"] },
+  { name: "Antiklimax", definition: "Stufenweise Abstufung \u2013 das Gegenteil der Klimax.", examples: ["\u201eKönige, Fürsten, Grafen, Ritter, Edelleute, Bürger, Bauern.\u201c", "\u201eEr war ein großer Feldherr, ein guter Soldat, ein brauchbarer Mann.\u201c", "\u201eIch kam, ich sah, ich ging wieder.\u201c"] },
+  { name: "Apostrophe", definition: "Direkte Anrede einer abwesenden Person, einer Sache oder eines abstrakten Begriffs.", examples: ["\u201eO Freunde, nicht diese Töne!\u201c", "\u201eDu liebes Glück, komm zu mir!\u201c", "\u201eIhr Berge, hört mein Lied!\u201c"] },
+  { name: "Emphase", definition: "Hervorhebung eines Wortes durch besondere Betonung.", examples: ["\u201eDas ist ein MENSCH!\u201c (im Sinne von: ein besonderer Mensch)", "\u201eDAS nenne ich Kunst!\u201c", "\u201eJetzt ist SCHLUSS!\u201c"] },
+];
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function FlashcardMode() {
+  const [deck, setDeck] = useState(() => shuffle(STILMITTEL));
+  const [idx, setIdx] = useState(0);
+  const [flipped, setFlipped] = useState(false);
+  const current = deck[idx];
+  const total = deck.length;
+  const next = () => { setFlipped(false); setTimeout(() => setIdx(i => i + 1 < total ? i + 1 : i), 100); };
+  const prev = () => { setFlipped(false); setTimeout(() => setIdx(i => i - 1 >= 0 ? i - 1 : i), 100); };
+  const restart = () => { setDeck(shuffle(STILMITTEL)); setIdx(0); setFlipped(false); };
+
+  return (
+    <div className="card-area fade-in">
+      <div className="card">
+        <div className="progress-bar-track"><div className="progress-bar-fill" style={{ width: ((idx+1)/total*100)+"%" }} /></div>
+        <div className="card-counter">{idx+1} / {total}</div>
+        {!flipped ? (
+          <div className="flashcard-front" onClick={() => setFlipped(true)} style={{ cursor: "pointer" }}>
+            <div className="flashcard-name">{current.name}</div>
+            <div className="flashcard-hint">Klicken zum Aufdecken ↓</div>
+          </div>
+        ) : (
+          <div className="flashcard-back">
+            <div className="flashcard-name" style={{ fontSize: 24, textAlign: "center", marginBottom: 16 }}>{current.name}</div>
+            <div className="flashcard-def">{current.definition}</div>
+            <div className="flashcard-example-label">Beispiele</div>
+            <div className="flashcard-examples">
+              {current.examples.slice(0,4).map((ex,i) => <span key={i}>{ex}</span>)}
+            </div>
+          </div>
+        )}
+        <div className="btn-row">
+          <button className="btn btn-ghost" onClick={prev} disabled={idx===0}>← Zurück</button>
+          {idx===total-1 ? <button className="btn btn-primary" onClick={restart}>Neu mischen ↻</button>
+            : <button className="btn btn-primary" onClick={next}>Weiter →</button>}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MultipleChoiceMode() {
+  const [questionCount, setQuestionCount] = useState(10);
+  const [questions, setQuestions] = useState(null);
+  const [qIdx, setQIdx] = useState(0);
+  const [selected, setSelected] = useState(null);
+  const [score, setScore] = useState(0);
+  const [done, setDone] = useState(false);
+
+  const generateQuestions = (count) => {
+    const qs = [];
+    const shuffled = shuffle(STILMITTEL);
+    for (let i = 0; i < count; i++) {
+      const correct = shuffled[i % shuffled.length];
+      const ex = correct.examples[Math.floor(Math.random() * correct.examples.length)];
+      const wrongs = shuffle(STILMITTEL.filter(s => s.name !== correct.name)).slice(0, 3);
+      const options = shuffle([correct, ...wrongs]);
+      qs.push({ example: ex, correctName: correct.name, options: options.map(o => o.name) });
+    }
+    return qs;
+  };
+
+  const start = () => { setQuestions(generateQuestions(questionCount)); setQIdx(0); setSelected(null); setScore(0); setDone(false); };
+  useEffect(() => { start(); }, []);
+
+  if (!questions) return null;
+  if (done) {
+    const pct = Math.round(score / questions.length * 100);
+    let msg = "Weiter üben!";
+    if (pct >= 90) msg = "Hervorragend! 🎉";
+    else if (pct >= 70) msg = "Sehr gut gemacht! 👏";
+    else if (pct >= 50) msg = "Gut, aber da geht noch mehr!";
+    return (
+      <div className="card-area fade-in"><div className="card"><div className="results">
+        <div className="results-score">{pct}%</div>
+        <div className="results-label">{score} von {questions.length} richtig</div>
+        <div className="results-message">{msg}</div>
+        <button className="btn btn-primary" onClick={start}>Nochmal spielen</button>
+      </div></div></div>
+    );
+  }
+
+  const q = questions[qIdx];
+  const handleSelect = (name) => { if (selected) return; setSelected(name); if (name === q.correctName) setScore(s => s + 1); };
+  const nextQ = () => { if (qIdx + 1 >= questions.length) setDone(true); else { setQIdx(i => i + 1); setSelected(null); } };
+
+  return (
+    <div className="card-area fade-in">
+      <div className="settings-row">
+        <span className="setting-label">Fragen:</span>
+        <select className="setting-select" value={questionCount} onChange={e => setQuestionCount(+e.target.value)}>
+          <option value={5}>5</option><option value={10}>10</option><option value={15}>15</option><option value={20}>20</option><option value={30}>30</option>
+        </select>
+        <button className="btn btn-ghost" onClick={start} style={{ padding: "6px 14px", fontSize: 13 }}>Neu starten</button>
+      </div>
+      <div className="card">
+        <div className="progress-bar-track"><div className="progress-bar-fill" style={{ width: ((qIdx+1)/questions.length*100)+"%" }} /></div>
+        <div className="card-counter">Frage {qIdx+1} / {questions.length}</div>
+        <div className="mc-example">{q.example}</div>
+        <div className="mc-options">
+          {q.options.map(name => {
+            let cls = "mc-option";
+            if (selected) {
+              if (name === q.correctName) cls += " mc-correct";
+              else if (name === selected && name !== q.correctName) cls += " mc-wrong";
+            }
+            return <button key={name} className={cls} onClick={() => handleSelect(name)}>{name}</button>;
+          })}
+        </div>
+        {selected && <div className={"feedback " + (selected===q.correctName ? "correct" : "wrong")}>
+          {selected===q.correctName ? "Richtig! ✓" : "Leider falsch. Die richtige Antwort ist: " + q.correctName}
+        </div>}
+        {selected && <div className="btn-row" style={{ justifyContent: "flex-end" }}>
+          <button className="btn btn-primary" onClick={nextQ}>{qIdx+1>=questions.length ? "Ergebnis anzeigen" : "Nächste Frage →"}</button>
+        </div>}
+      </div>
+    </div>
+  );
+}
+
+function FreeTextMode() {
+  const [questionCount, setQuestionCount] = useState(10);
+  const [questions, setQuestions] = useState(null);
+  const [qIdx, setQIdx] = useState(0);
+  const [input, setInput] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [isCorrect, setIsCorrect] = useState(false);
+  const [score, setScore] = useState(0);
+  const [done, setDone] = useState(false);
+  const inputRef = useRef(null);
+
+  const generateQuestions = (count) => {
+    const qs = [];
+    const shuffled = shuffle(STILMITTEL);
+    for (let i = 0; i < count; i++) {
+      const s = shuffled[i % shuffled.length];
+      const ex = s.examples[Math.floor(Math.random() * s.examples.length)];
+      qs.push({ example: ex, correctName: s.name, definition: s.definition });
+    }
+    return qs;
+  };
+
+  const start = () => { setQuestions(generateQuestions(questionCount)); setQIdx(0); setInput(""); setSubmitted(false); setScore(0); setDone(false); };
+  useEffect(() => { start(); }, []);
+
+  const normalize = (s) => s.toLowerCase().trim().replace(/ä/g,"ae").replace(/ö/g,"oe").replace(/ü/g,"ue").replace(/ß/g,"ss").replace(/[^a-z]/g,"");
+
+  const checkAnswer = () => {
+    if (!input.trim()) return;
+    const correct = normalize(input) === normalize(questions[qIdx].correctName);
+    setIsCorrect(correct); setSubmitted(true);
+    if (correct) setScore(s => s + 1);
+  };
+
+  const nextQ = () => {
+    if (qIdx + 1 >= questions.length) setDone(true);
+    else { setQIdx(i => i + 1); setInput(""); setSubmitted(false); setTimeout(() => inputRef.current?.focus(), 50); }
+  };
+
+  if (!questions) return null;
+  if (done) {
+    const pct = Math.round(score / questions.length * 100);
+    let msg = "Weiter üben!";
+    if (pct >= 90) msg = "Hervorragend! 🎉";
+    else if (pct >= 70) msg = "Sehr gut gemacht! 👏";
+    else if (pct >= 50) msg = "Gut, aber da geht noch mehr!";
+    return (
+      <div className="card-area fade-in"><div className="card"><div className="results">
+        <div className="results-score">{pct}%</div>
+        <div className="results-label">{score} von {questions.length} richtig</div>
+        <div className="results-message">{msg}</div>
+        <button className="btn btn-primary" onClick={start}>Nochmal spielen</button>
+      </div></div></div>
+    );
+  }
+
+  const q = questions[qIdx];
+
+  return (
+    <div className="card-area fade-in">
+      <div className="settings-row">
+        <span className="setting-label">Fragen:</span>
+        <select className="setting-select" value={questionCount} onChange={e => setQuestionCount(+e.target.value)}>
+          <option value={5}>5</option><option value={10}>10</option><option value={15}>15</option><option value={20}>20</option><option value={30}>30</option>
+        </select>
+        <button className="btn btn-ghost" onClick={start} style={{ padding: "6px 14px", fontSize: 13 }}>Neu starten</button>
+      </div>
+      <div className="card">
+        <div className="progress-bar-track"><div className="progress-bar-fill" style={{ width: ((qIdx+1)/questions.length*100)+"%" }} /></div>
+        <div className="card-counter">Frage {qIdx+1} / {questions.length}</div>
+        <div className="ft-example">{q.example}</div>
+        <div className="ft-input-row">
+          <input ref={inputRef} className={"ft-input" + (submitted ? (isCorrect ? " ft-correct" : " ft-wrong") : "")}
+            type="text" placeholder="Stilmittel eingeben\u2026" value={input}
+            onChange={e => setInput(e.target.value)}
+            onKeyDown={e => { if (e.key==="Enter" && !submitted) checkAnswer(); if (e.key==="Enter" && submitted) nextQ(); }}
+            disabled={submitted} autoFocus />
+          {!submitted && <button className="btn btn-primary" onClick={checkAnswer}>Prüfen</button>}
+        </div>
+        {submitted && <div className={"feedback " + (isCorrect ? "correct" : "wrong")}>
+          {isCorrect ? "Richtig! ✓" : <span>Leider falsch. Die richtige Antwort ist: <strong>{q.correctName}</strong><br /><span style={{ fontWeight: 400, opacity: 0.85 }}>{q.definition}</span></span>}
+        </div>}
+        {submitted && <div className="btn-row" style={{ justifyContent: "flex-end" }}>
+          <button className="btn btn-primary" onClick={nextQ}>{qIdx+1>=questions.length ? "Ergebnis anzeigen" : "Nächste Frage →"}</button>
+        </div>}
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  const [mode, setMode] = useState("flash");
+  return (
+    <div className="app">
+      <div className="nav-header">
+        <h1>Rhetorische Stilmittel</h1>
+        <p>{STILMITTEL.length} Stilmittel · Drei Übungsmodi</p>
+        <div className="mode-tabs">
+          <button className={"mode-tab" + (mode==="flash" ? " active" : "")} onClick={() => setMode("flash")}>Karteikarten</button>
+          <button className={"mode-tab" + (mode==="mc" ? " active" : "")} onClick={() => setMode("mc")}>Multiple Choice</button>
+          <button className={"mode-tab" + (mode==="ft" ? " active" : "")} onClick={() => setMode("ft")}>Freitext</button>
+        </div>
+      </div>
+      {mode === "flash" && <FlashcardMode key="flash" />}
+      {mode === "mc" && <MultipleChoiceMode key="mc" />}
+      {mode === "ft" && <FreeTextMode key="ft" />}
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>
