@@ -275,335 +275,335 @@ const { useState, useEffect, useRef } = React;
 const STILMITTEL = [
   {
     name: "Allegorie",
-    definition: "Erweiterte Metapher: Ein abstrakter Begriff wird \u00fcber einen l\u00e4ngeren Textabschnitt hinweg durch ein konkretes Bild dargestellt, oft als Personifikation.",
+    definition: "Erweiterte Metapher: Ein abstrakter Begriff wird über einen längeren Textabschnitt hinweg durch ein konkretes Bild dargestellt, oft als Personifikation.",
     examples: [
-      "\u201eJustitia\u201c \u2013 Frauenfigur mit Waage und Schwert steht f\u00fcr Gerechtigkeit",
-      "\u201eSensenmann\u201c \u2013 Figur mit Sense steht f\u00fcr den Tod",
-      "\u201eFortuna\u201c \u2013 das Gl\u00fccksrad als Bild f\u00fcr das wechselhafte Schicksal",
-      "\u201ePlatons H\u00f6hlengleichnis\u201c \u2013 die H\u00f6hle steht f\u00fcr die Welt der T\u00e4uschung"
+      "„Justitia“ – Frauenfigur mit Waage und Schwert steht für Gerechtigkeit",
+      "„Sensenmann“ – Figur mit Sense steht für den Tod",
+      "„Fortuna“ – das Glücksrad als Bild für das wechselhafte Schicksal",
+      "„Platons Höhlengleichnis“ – die Höhle steht für die Welt der Täuschung"
     ]
   },
   {
     name: "Alliteration",
-    definition: "Gleicher Anfangslaut bei zwei oder mehr aufeinanderfolgenden W\u00f6rtern.",
+    definition: "Gleicher Anfangslaut bei zwei oder mehr aufeinanderfolgenden Wörtern.",
     examples: [
-      "\u201eMilch macht m\u00fcde M\u00e4nner munter.\u201c",
-      "\u201eKind und Kegel\u201c",
-      "\u201eWind und Wetter\u201c",
-      "\u201e\u00dcber Stock und Stein\u201c",
-      "\u201eMit Mann und Maus\u201c"
+      "„Milch macht müde Männer munter.“",
+      "„Kind und Kegel“",
+      "„Wind und Wetter“",
+      "„Über Stock und Stein“",
+      "„Mit Mann und Maus“"
     ]
   },
   {
     name: "Anapher",
-    definition: "Wiederholung desselben Wortes oder derselben Wortgruppe am Anfang aufeinanderfolgender S\u00e4tze oder Verse.",
+    definition: "Wiederholung desselben Wortes oder derselben Wortgruppe am Anfang aufeinanderfolgender Sätze oder Verse.",
     examples: [
-      "\u201eIch bin m\u00fcde. Ich bin ersch\u00f6pft. Ich bin am Ende.\u201c",
-      "\u201eDas Wasser rauscht\u2019. Das Wasser schwoll.\u201c",
-      "\u201eWer nie sein Brot mit Tr\u00e4nen a\u00df, / Wer nie die kummervollen N\u00e4chte\u2026\u201c",
-      "\u201eEr rannte los. Er rannte schnell. Er rannte um sein Leben.\u201c"
+      "„Ich bin müde. Ich bin erschöpft. Ich bin am Ende.“",
+      "„Das Wasser rauscht’. Das Wasser schwoll.“",
+      "„Wer nie sein Brot mit Tränen aß, / Wer nie die kummervollen Nächte…“",
+      "„Er rannte los. Er rannte schnell. Er rannte um sein Leben.“"
     ]
   },
   {
     name: "Anglizismus",
     definition: "Verwendung eines englischen Wortes oder Ausdrucks in einem deutschsprachigen Text.",
     examples: [
-      "\u201eDas Meeting wurde gecancelt.\u201c",
-      "\u201eWir brauchen mehr Content f\u00fcr die Website.\u201c",
-      "\u201eDas war ein absoluter Gamechanger.\u201c",
-      "\u201eIch muss das noch downloaden.\u201c",
-      "\u201eSie hat ein gutes Standing in der Firma.\u201c"
+      "„Das Meeting wurde gecancelt.“",
+      "„Wir brauchen mehr Content für die Website.“",
+      "„Das war ein absoluter Gamechanger.“",
+      "„Ich muss das noch downloaden.“",
+      "„Sie hat ein gutes Standing in der Firma.“"
     ]
   },
   {
     name: "Antiklimax",
-    definition: "Stufenweise Abstufung vom Starken zum Schwachen \u2013 das Gegenteil der Klimax.",
+    definition: "Stufenweise Abstufung vom Starken zum Schwachen – das Gegenteil der Klimax.",
     examples: [
-      "\u201eK\u00f6nige, F\u00fcrsten, Grafen, Ritter, Edelleute, B\u00fcrger, Bauern.\u201c",
-      "\u201eEr war ein gro\u00dfer Feldherr, ein guter Soldat, ein brauchbarer Mann.\u201c",
-      "\u201eIch kam, ich sah, ich ging wieder.\u201c",
-      "\u201eEr war w\u00fctend, ver\u00e4rgert, leicht genervt.\u201c"
+      "„Könige, Fürsten, Grafen, Ritter, Edelleute, Bürger, Bauern.“",
+      "„Er war ein großer Feldherr, ein guter Soldat, ein brauchbarer Mann.“",
+      "„Ich kam, ich sah, ich ging wieder.“",
+      "„Er war wütend, verärgert, leicht genervt.“"
     ]
   },
   {
     name: "Antithese",
-    definition: "Gegen\u00fcberstellung von gegens\u00e4tzlichen Begriffen oder Gedanken.",
+    definition: "Gegenüberstellung von gegensätzlichen Begriffen oder Gedanken.",
     examples: [
-      "\u201eDer Wahn ist kurz, die Reu ist lang.\u201c",
-      "\u201eDer Geist ist willig, aber das Fleisch ist schwach.\u201c",
-      "\u201eKrieg und Frieden\u201c",
-      "\u201eHimmel und H\u00f6lle\u201c",
-      "\u201eJung und Alt, Arm und Reich\u201c"
+      "„Der Wahn ist kurz, die Reu ist lang.“",
+      "„Der Geist ist willig, aber das Fleisch ist schwach.“",
+      "„Krieg und Frieden“",
+      "„Himmel und Hölle“",
+      "„Jung und Alt, Arm und Reich“"
     ]
   },
   {
     name: "Asyndeton",
-    definition: "Aufz\u00e4hlung ohne Bindew\u00f6rter (Konjunktionen) \u2013 die Begriffe stehen nur durch Kommata getrennt.",
+    definition: "Aufzählung ohne Bindewörter (Konjunktionen) – die Begriffe stehen nur durch Kommata getrennt.",
     examples: [
-      "\u201eAlles rennet, rettet, fl\u00fcchtet.\u201c",
-      "\u201eEr kam, sah, siegte.\u201c",
-      "\u201eHeute, morgen, \u00fcbermorgen.\u201c",
-      "\u201eFriede, Freude, Eierkuchen.\u201c"
+      "„Alles rennet, rettet, flüchtet.“",
+      "„Er kam, sah, siegte.“",
+      "„Heute, morgen, übermorgen.“",
+      "„Friede, Freude, Eierkuchen.“"
     ]
   },
   {
     name: "Chiasmus",
-    definition: "\u00dcberkreuzstellung: Zwei aufeinanderfolgende Satzteile sind syntaktisch spiegelbildlich aufgebaut (AB \u2013 BA).",
+    definition: "Überkreuzstellung: Zwei aufeinanderfolgende Satzteile sind syntaktisch spiegelbildlich aufgebaut (AB – BA).",
     examples: [
-      "\u201eDie Kunst ist lang, und kurz ist unser Leben.\u201c",
-      "\u201eIch schlafe am Tag, in der Nacht wache ich.\u201c",
-      "\u201eEng ist die Welt und das Gehirn ist weit.\u201c",
-      "\u201eSie ist bescheiden, gierig bist du.\u201c"
+      "„Die Kunst ist lang, und kurz ist unser Leben.“",
+      "„Ich schlafe am Tag, in der Nacht wache ich.“",
+      "„Eng ist die Welt und das Gehirn ist weit.“",
+      "„Sie ist bescheiden, gierig bist du.“"
     ]
   },
   {
     name: "Chiffre",
-    definition: "R\u00e4tselhaftes, verschl\u00fcsseltes Bild, das sich nur aus dem Werk oder Gesamtwerk der Autorin/des Autors erschlie\u00dfen l\u00e4sst.",
+    definition: "Rätselhaftes, verschlüsseltes Bild, das sich nur aus dem Werk oder Gesamtwerk der Autorin/des Autors erschließen lässt.",
     examples: [
-      "\u201eblaues Klavier\u201c (Else Lasker-Sch\u00fcler)",
-      "\u201eschwarze Milch der Fr\u00fche\u201c (Paul Celan, Todesfuge)",
-      "\u201edie Windsbraut\u201c (Georg Trakl)",
-      "\u201eDer Panther\u201c als Chiffre f\u00fcr Gefangenschaft (Rilke)"
+      "„blaues Klavier“ (Else Lasker-Schüler)",
+      "„schwarze Milch der Frühe“ (Paul Celan, Todesfuge)",
+      "„die Windsbraut“ (Georg Trakl)",
+      "„Der Panther“ als Chiffre für Gefangenschaft (Rilke)"
     ]
   },
   {
     name: "Ellipse",
-    definition: "Auslassung eines Satzteils, der zum Verst\u00e4ndnis nicht zwingend n\u00f6tig ist. Der Satz ist grammatisch unvollst\u00e4ndig.",
+    definition: "Auslassung eines Satzteils, der zum Verständnis nicht zwingend nötig ist. Der Satz ist grammatisch unvollständig.",
     examples: [
-      "\u201eJe fr\u00fcher, desto besser.\u201c",
-      "\u201eEnde gut, alles gut.\u201c",
-      "\u201eWas nun?\u201c",
-      "\u201eErst die Arbeit, dann das Vergn\u00fcgen.\u201c",
-      "\u201eDu vielleicht, ich sicher nicht.\u201c"
+      "„Je früher, desto besser.“",
+      "„Ende gut, alles gut.“",
+      "„Was nun?“",
+      "„Erst die Arbeit, dann das Vergnügen.“",
+      "„Du vielleicht, ich sicher nicht.“"
     ]
   },
   {
     name: "Emphase",
-    definition: "Hervorhebung eines Wortes durch besondere Betonung, sodass es einen tieferen oder st\u00e4rkeren Sinn bekommt.",
+    definition: "Hervorhebung eines Wortes durch besondere Betonung, sodass es einen tieferen oder stärkeren Sinn bekommt.",
     examples: [
-      "\u201eDas ist ein MENSCH!\u201c (im Sinne von: ein besonderer Mensch)",
-      "\u201eDAS nenne ich Kunst!\u201c",
-      "\u201eAch du meine G\u00fcte!\u201c",
-      "\u201eJetzt ist SCHLUSS!\u201c"
+      "„Das ist ein MENSCH!“ (im Sinne von: ein besonderer Mensch)",
+      "„DAS nenne ich Kunst!“",
+      "„Ach du meine Güte!“",
+      "„Jetzt ist SCHLUSS!“"
     ]
   },
   {
     name: "Enjambement",
-    definition: "Zeilensprung in der Lyrik: Ein Satz oder Satzteil wird \u00fcber das Versende hinaus in die n\u00e4chste Zeile fortgef\u00fchrt.",
+    definition: "Zeilensprung in der Lyrik: Ein Satz oder Satzteil wird über das Versende hinaus in die nächste Zeile fortgeführt.",
     examples: [
-      "\u201eDer Nebel dr\u00fcckt / die D\u00e4cher schwer\u2026\u201c",
-      "\u201eIch ging im Feld / und sah die Blumen stehen.\u201c",
-      "\u201eAm Brunnen vor / dem Tore\u2026\u201c",
-      "\u201eUnd es wallet und siedet / und brauset und zischt.\u201c"
+      "„Der Nebel drückt / die Dächer schwer…“",
+      "„Ich ging im Feld / und sah die Blumen stehen.“",
+      "„Am Brunnen vor / dem Tore…“",
+      "„Und es wallet und siedet / und brauset und zischt.“"
     ]
   },
   {
     name: "Enumeration",
-    definition: "Aufz\u00e4hlung mehrerer Begriffe, um einen Oberbegriff zu veranschaulichen oder eine Aussage zu verst\u00e4rken.",
+    definition: "Aufzählung mehrerer Begriffe, um einen Oberbegriff zu veranschaulichen oder eine Aussage zu verstärken.",
     examples: [
-      "\u201eNun ruhen alle W\u00e4lder, / Vieh, Menschen, St\u00e4dt und Felder.\u201c",
-      "\u201eSonne, Mond und Sterne\u201c",
-      "\u201eFeld, Wald und Wiese\u201c",
-      "\u201eFeuer, Wasser, Erde, Luft\u201c",
-      "\u201eAlte und Junge, Dumme und Gescheite, Arme und Reiche sind betroffen.\u201c"
+      "„Nun ruhen alle Wälder, / Vieh, Menschen, Städt und Felder.“",
+      "„Sonne, Mond und Sterne“",
+      "„Feld, Wald und Wiese“",
+      "„Feuer, Wasser, Erde, Luft“",
+      "„Alte und Junge, Dumme und Gescheite, Arme und Reiche sind betroffen.“"
     ]
   },
   {
     name: "Epipher",
-    definition: "Wiederholung desselben Wortes am Ende aufeinanderfolgender S\u00e4tze oder Verse (Gegenteil der Anapher).",
+    definition: "Wiederholung desselben Wortes am Ende aufeinanderfolgender Sätze oder Verse (Gegenteil der Anapher).",
     examples: [
-      "\u201eEr schreibt nicht. Er liest nicht. Er lernt nicht.\u201c",
-      "\u201eDoch alle Lust will Ewigkeit, / will tiefe, tiefe Ewigkeit.\u201c",
-      "\u201eIch bin gl\u00fccklich, wir alle sind gl\u00fccklich.\u201c",
-      "\u201eEr kopiert nicht. Er liest nicht.\u201c"
+      "„Er schreibt nicht. Er liest nicht. Er lernt nicht.“",
+      "„Doch alle Lust will Ewigkeit, / will tiefe, tiefe Ewigkeit.“",
+      "„Ich bin glücklich, wir alle sind glücklich.“",
+      "„Er kopiert nicht. Er liest nicht.“"
     ]
   },
   {
     name: "Euphemismus",
-    definition: "Besch\u00f6nigende oder verharmlosende Umschreibung f\u00fcr etwas Unangenehmes.",
+    definition: "Beschönigende oder verharmlosende Umschreibung für etwas Unangenehmes.",
     examples: [
-      "\u201eEr ist von uns gegangen.\u201c (statt: Er ist gestorben.)",
-      "\u201eFreisetzung von Mitarbeitern\u201c (statt: Entlassung)",
-      "\u201eSeniorenresidenz\u201c (statt: Altenheim)",
-      "\u201eEwiger Schlaf\u201c (statt: Tod)",
-      "\u201eKollateralschaden\u201c (statt: zivile Opfer)"
+      "„Er ist von uns gegangen.“ (statt: Er ist gestorben.)",
+      "„Freisetzung von Mitarbeitern“ (statt: Entlassung)",
+      "„Seniorenresidenz“ (statt: Altenheim)",
+      "„Ewiger Schlaf“ (statt: Tod)",
+      "„Kollateralschaden“ (statt: zivile Opfer)"
     ]
   },
   {
     name: "Hendiadyoin",
-    definition: "Doppelausdruck: Zwei bedeutungs\u00e4hnliche W\u00f6rter werden mit \u201eund\u201c verbunden, um einen einzigen Begriff zu verst\u00e4rken.",
+    definition: "Doppelausdruck: Zwei bedeutungsähnliche Wörter werden mit „und“ verbunden, um einen einzigen Begriff zu verstärken.",
     examples: [
-      "\u201eAngst und Bange\u201c",
-      "\u201eGrund und Boden\u201c",
-      "\u201eArt und Weise\u201c",
-      "\u201eHilfe und Beistand\u201c",
-      "\u201eRat und Tat\u201c"
+      "„Angst und Bange“",
+      "„Grund und Boden“",
+      "„Art und Weise“",
+      "„Hilfe und Beistand“",
+      "„Rat und Tat“"
     ]
   },
   {
     name: "Hyperbel",
-    definition: "Starke \u00dcbertreibung eines Ausdrucks, um eine besondere Wirkung zu erzielen.",
+    definition: "Starke Übertreibung eines Ausdrucks, um eine besondere Wirkung zu erzielen.",
     examples: [
-      "\u201eIch habe dir das schon tausendmal gesagt!\u201c",
-      "\u201eEin Meer von Tr\u00e4nen\u201c",
-      "\u201eTodm\u00fcde sein\u201c",
-      "\u201eBlitzschnell\u201c",
-      "\u201eDas dauert ja eine Ewigkeit!\u201c",
-      "\u201eIch sterbe vor Hunger!\u201c"
+      "„Ich habe dir das schon tausendmal gesagt!“",
+      "„Ein Meer von Tränen“",
+      "„Todmüde sein“",
+      "„Blitzschnell“",
+      "„Das dauert ja eine Ewigkeit!“",
+      "„Ich sterbe vor Hunger!“"
     ]
   },
   {
     name: "Inversion",
-    definition: "Umkehrung der \u00fcblichen Wortstellung im Satz, z.\u00a0B. das Verb oder Objekt wird vorangestellt.",
+    definition: "Umkehrung der üblichen Wortstellung im Satz, z. B. das Verb oder Objekt wird vorangestellt.",
     examples: [
-      "\u201eGering war unser Auskommen.\u201c",
-      "\u201eSchlimm ist diese Lage.\u201c",
-      "\u201eM\u00fcde bin ich, geh zur Ruh.\u201c",
-      "\u201eNat\u00fcrlich mag sie verwelkte Blumen.\u201c"
+      "„Gering war unser Auskommen.“",
+      "„Schlimm ist diese Lage.“",
+      "„Müde bin ich, geh zur Ruh.“",
+      "„Natürlich mag sie verwelkte Blumen.“"
     ]
   },
   {
     name: "Ironie",
-    definition: "Man sagt das Gegenteil von dem, was man meint \u2013 die wahre Bedeutung ergibt sich aus dem Zusammenhang.",
+    definition: "Man sagt das Gegenteil von dem, was man meint – die wahre Bedeutung ergibt sich aus dem Zusammenhang.",
     examples: [
-      "\u201eDas hast du ja toll hinbekommen!\u201c (bei einem Fehler)",
-      "\u201eNa, das ist ja eine sch\u00f6ne Bescherung!\u201c",
-      "\u201eSch\u00f6nes Wetter heute!\u201c (bei Regen)",
-      "\u201eDanke f\u00fcr die p\u00fcnktliche Lieferung!\u201c (nach wochenlanger Versp\u00e4tung)"
+      "„Das hast du ja toll hinbekommen!“ (bei einem Fehler)",
+      "„Na, das ist ja eine schöne Bescherung!“",
+      "„Schönes Wetter heute!“ (bei Regen)",
+      "„Danke für die pünktliche Lieferung!“ (nach wochenlanger Verspätung)"
     ]
   },
   {
     name: "Klimax",
-    definition: "Stufenweise Steigerung von Ausdr\u00fccken \u2013 vom Schwachen zum Starken.",
+    definition: "Stufenweise Steigerung von Ausdrücken – vom Schwachen zum Starken.",
     examples: [
-      "\u201eIch kam, sah und siegte.\u201c",
-      "\u201eIch bin erstaunt, erschrocken, entsetzt!\u201c",
-      "\u201eEr war unzufrieden, w\u00fctend, rasend.\u201c",
-      "\u201eHeute back ich, morgen brau ich, \u00fcbermorgen hol ich der K\u00f6nigin ihr Kind.\u201c"
+      "„Ich kam, sah und siegte.“",
+      "„Ich bin erstaunt, erschrocken, entsetzt!“",
+      "„Er war unzufrieden, wütend, rasend.“",
+      "„Heute back ich, morgen brau ich, übermorgen hol ich der Königin ihr Kind.“"
     ]
   },
   {
     name: "Litotes",
     definition: "Untertreibung oder Verneinung des Gegenteils, um etwas hervorzuheben.",
     examples: [
-      "\u201eDas war nicht schlecht.\u201c (= Es war gut.)",
-      "\u201eNicht \u00fcbel!\u201c (= Sehr gut!)",
-      "\u201eSie ist nicht unh\u00fcbsch.\u201c",
-      "\u201eEr ist nicht gerade ein Genie.\u201c",
-      "\u201eSie ist nicht das hellste Licht auf dem Geburtstagskuchen.\u201c"
+      "„Das war nicht schlecht.“ (= Es war gut.)",
+      "„Nicht übel!“ (= Sehr gut!)",
+      "„Sie ist nicht unhübsch.“",
+      "„Er ist nicht gerade ein Genie.“",
+      "„Sie ist nicht das hellste Licht auf dem Geburtstagskuchen.“"
     ]
   },
   {
     name: "Metapher",
-    definition: "\u00dcbertragung eines Bildes aus einem Bedeutungsbereich in einen anderen, ohne Vergleichswort (\u201ewie\u201c).",
+    definition: "Übertragung eines Bildes aus einem Bedeutungsbereich in einen anderen, ohne Vergleichswort („wie“).",
     examples: [
-      "\u201eDas Feuer der Leidenschaft\u201c",
-      "\u201eJemandem das Herz brechen\u201c",
-      "\u201eDer Zahn der Zeit\u201c",
-      "\u201eRabeneltern\u201c",
-      "\u201eAm Fu\u00dfe des Berges\u201c",
-      "\u201eW\u00fcstenschiff\u201c (= Kamel)"
+      "„Das Feuer der Leidenschaft“",
+      "„Jemandem das Herz brechen“",
+      "„Der Zahn der Zeit“",
+      "„Rabeneltern“",
+      "„Am Fuße des Berges“",
+      "„Wüstenschiff“ (= Kamel)"
     ]
   },
   {
     name: "Metonymie",
     definition: "Ersetzung eines Begriffs durch einen anderen, der in sachlicher (nicht bildlicher) Beziehung zu ihm steht.",
     examples: [
-      "\u201eDas Wei\u00dfe Haus erkl\u00e4rte\u2026\u201c (statt: der Pr\u00e4sident)",
-      "\u201eIch lese Goethe.\u201c (statt: ein Werk von Goethe)",
-      "\u201eEr trinkt gern ein Glas.\u201c (statt: den Inhalt)",
-      "\u201eBerlin hat entschieden.\u201c (statt: die Regierung)",
-      "\u201eWir leben alle unter einem Dach.\u201c"
+      "„Das Weiße Haus erklärte…“ (statt: der Präsident)",
+      "„Ich lese Goethe.“ (statt: ein Werk von Goethe)",
+      "„Er trinkt gern ein Glas.“ (statt: den Inhalt)",
+      "„Berlin hat entschieden.“ (statt: die Regierung)",
+      "„Wir leben alle unter einem Dach.“"
     ]
   },
   {
     name: "Neologismus",
-    definition: "Wortneusch\u00f6pfung \u2013 ein neu gebildetes Wort, das es so vorher nicht gab.",
+    definition: "Wortneuschöpfung – ein neu gebildetes Wort, das es so vorher nicht gab.",
     examples: [
-      "\u201eSmombie\u201c (Smartphone + Zombie)",
-      "\u201eFremdsch\u00e4men\u201c",
-      "\u201eWutb\u00fcrger\u201c",
-      "\u201eDigitalnomade\u201c",
-      "\u201eChillen\u201c"
+      "„Smombie“ (Smartphone + Zombie)",
+      "„Fremdschämen“",
+      "„Wutbürger“",
+      "„Digitalnomade“",
+      "„Chillen“"
     ]
   },
   {
     name: "Onomatopoesie",
-    definition: "Lautmalerei: W\u00f6rter, die den Klang oder das Ger\u00e4usch nachahmen, das sie bezeichnen.",
+    definition: "Lautmalerei: Wörter, die den Klang oder das Geräusch nachahmen, das sie bezeichnen.",
     examples: [
-      "\u201eDie Bienen summen.\u201c",
-      "\u201eDas Wasser pl\u00e4tschert.\u201c",
-      "\u201eEs knistert im Kamin.\u201c",
-      "\u201eDie T\u00fcr knarrt.\u201c",
-      "\u201eKuckuck, Miau, Kikeriki\u201c"
+      "„Die Bienen summen.“",
+      "„Das Wasser plätschert.“",
+      "„Es knistert im Kamin.“",
+      "„Die Tür knarrt.“",
+      "„Kuckuck, Miau, Kikeriki“"
     ]
   },
   {
     name: "Oxymoron",
     definition: "Verbindung zweier sich widersprechender Begriffe zu einer Einheit.",
     examples: [
-      "\u201eBitters\u00fc\u00df\u201c",
-      "\u201eAlter Knabe\u201c",
-      "\u201eOffenes Geheimnis\u201c",
-      "\u201eBeredtes Schweigen\u201c",
-      "\u201eH\u00f6lzernes Eisen\u201c",
-      "\u201eKalte Glut\u201c"
+      "„Bittersüß“",
+      "„Alter Knabe“",
+      "„Offenes Geheimnis“",
+      "„Beredtes Schweigen“",
+      "„Hölzernes Eisen“",
+      "„Kalte Glut“"
     ]
   },
   {
     name: "Paradoxon",
-    definition: "Scheinbar widerspr\u00fcchliche Aussage, die bei genauerem Nachdenken einen tieferen Sinn enth\u00e4lt.",
+    definition: "Scheinbar widersprüchliche Aussage, die bei genauerem Nachdenken einen tieferen Sinn enthält.",
     examples: [
-      "\u201eWeniger ist mehr.\u201c",
-      "\u201eIch wei\u00df, dass ich nichts wei\u00df.\u201c",
-      "\u201eDas Gesetz ist das Kleid der Freiheit.\u201c",
-      "\u201eWer den Tod f\u00fcrchtet, hat das Leben verloren.\u201c"
+      "„Weniger ist mehr.“",
+      "„Ich weiß, dass ich nichts weiß.“",
+      "„Das Gesetz ist das Kleid der Freiheit.“",
+      "„Wer den Tod fürchtet, hat das Leben verloren.“"
     ]
   },
   {
     name: "Parallelismus",
-    definition: "Wiederholung der gleichen syntaktischen Struktur in aufeinanderfolgenden S\u00e4tzen oder Satzteilen.",
+    definition: "Wiederholung der gleichen syntaktischen Struktur in aufeinanderfolgenden Sätzen oder Satzteilen.",
     examples: [
-      "\u201eHei\u00df ist die Liebe, kalt ist der Schnee.\u201c",
-      "\u201eDer Vater lacht, die Mutter weint.\u201c",
-      "\u201eReden ist Silber, Schweigen ist Gold.\u201c",
-      "\u201eKleine Kinder, kleine Sorgen \u2013 gro\u00dfe Kinder, gro\u00dfe Sorgen.\u201c"
+      "„Heiß ist die Liebe, kalt ist der Schnee.“",
+      "„Der Vater lacht, die Mutter weint.“",
+      "„Reden ist Silber, Schweigen ist Gold.“",
+      "„Kleine Kinder, kleine Sorgen – große Kinder, große Sorgen.“"
     ]
   },
   {
     name: "Personifikation",
-    definition: "Vermenschlichung: Tieren, Gegenst\u00e4nden oder abstrakten Begriffen werden menschliche Eigenschaften zugeschrieben.",
+    definition: "Vermenschlichung: Tieren, Gegenständen oder abstrakten Begriffen werden menschliche Eigenschaften zugeschrieben.",
     examples: [
-      "\u201eDie Sonne lacht.\u201c",
-      "\u201eDer Wind fl\u00fcstert.\u201c",
-      "\u201eDie Zeit heilt alle Wunden.\u201c",
-      "\u201eDer Tod klopft an die T\u00fcr.\u201c",
-      "\u201eMutter Natur\u201c"
+      "„Die Sonne lacht.“",
+      "„Der Wind flüstert.“",
+      "„Die Zeit heilt alle Wunden.“",
+      "„Der Tod klopft an die Tür.“",
+      "„Mutter Natur“"
     ]
   },
   {
     name: "Polysyndeton",
-    definition: "Aufz\u00e4hlung, bei der die Glieder durch die wiederholte gleiche Konjunktion verbunden sind.",
+    definition: "Aufzählung, bei der die Glieder durch die wiederholte gleiche Konjunktion verbunden sind.",
     examples: [
-      "\u201eUnd es wallet und siedet und brauset und zischt.\u201c",
-      "\u201eUnd der Regen f\u00e4llt und der Wind weht und die Bl\u00e4tter treiben.\u201c",
-      "\u201eDas bringt nichts als Hunger und Tod und Verderben.\u201c",
-      "\u201eOder heute oder morgen oder \u00fcbermorgen.\u201c"
+      "„Und es wallet und siedet und brauset und zischt.“",
+      "„Und der Regen fällt und der Wind weht und die Blätter treiben.“",
+      "„Das bringt nichts als Hunger und Tod und Verderben.“",
+      "„Oder heute oder morgen oder übermorgen.“"
     ]
   },
   {
     name: "Rhetorische Frage",
     definition: "Eine Frage, auf die keine Antwort erwartet wird, weil die Antwort offensichtlich ist.",
     examples: [
-      "\u201eBin ich denn der Einzige, der hier arbeitet?\u201c",
-      "\u201eHaben wir nicht alle schon mal einen Fehler gemacht?\u201c",
-      "\u201eWer will das schon?\u201c",
-      "\u201eSind wir nicht alle ein bisschen Weltmeister?\u201c"
+      "„Bin ich denn der Einzige, der hier arbeitet?“",
+      "„Haben wir nicht alle schon mal einen Fehler gemacht?“",
+      "„Wer will das schon?“",
+      "„Sind wir nicht alle ein bisschen Weltmeister?“"
     ]
   },
   {
     name: "Symbol",
-    definition: "Ein konkreter Gegenstand, der f\u00fcr eine allgemein bekannte abstrakte Idee steht.",
+    definition: "Ein konkreter Gegenstand, der für eine allgemein bekannte abstrakte Idee steht.",
     examples: [
       "Taube = Frieden",
       "Herz = Liebe",
@@ -613,66 +613,66 @@ const STILMITTEL = [
     ]
   },
   {
-    name: "Syn\u00e4sthesie",
-    definition: "Verkn\u00fcpfung von Sinneswahrnehmungen aus verschiedenen Bereichen (z.\u00a0B. H\u00f6ren + Sehen).",
+    name: "Synästhesie",
+    definition: "Verknüpfung von Sinneswahrnehmungen aus verschiedenen Bereichen (z. B. Hören + Sehen).",
     examples: [
-      "\u201eS\u00fc\u00df klingende Glocken\u201c",
-      "\u201eSchreiendes Rot\u201c",
-      "\u201eWarme Farben\u201c",
-      "\u201eHelle und dunkle T\u00f6ne\u201c",
-      "\u201eWeicher Klang\u201c"
+      "„Süß klingende Glocken“",
+      "„Schreiendes Rot“",
+      "„Warme Farben“",
+      "„Helle und dunkle Töne“",
+      "„Weicher Klang“"
     ]
   },
   {
     name: "Tautologie",
-    definition: "Wiederholung desselben Sachverhalts mit bedeutungsgleichen oder sinnverwandten W\u00f6rtern.",
+    definition: "Wiederholung desselben Sachverhalts mit bedeutungsgleichen oder sinnverwandten Wörtern.",
     examples: [
-      "\u201eImmer und ewig\u201c",
-      "\u201eVoll und ganz\u201c",
-      "\u201eNie und nimmer\u201c",
-      "\u201eAngst und Bange\u201c",
-      "\u201eHegen und pflegen\u201c"
+      "„Immer und ewig“",
+      "„Voll und ganz“",
+      "„Nie und nimmer“",
+      "„Angst und Bange“",
+      "„Hegen und pflegen“"
     ]
   },
   {
     name: "Trias",
-    definition: "Dreigliedrige Aufz\u00e4hlung \u2013 drei Begriffe oder Satzteile werden aneinandergereiht.",
+    definition: "Dreigliedrige Aufzählung – drei Begriffe oder Satzteile werden aneinandergereiht.",
     examples: [
-      "\u201eFreiheit, Gleichheit, Br\u00fcderlichkeit\u201c",
-      "\u201eBlut, Schwei\u00df und Tr\u00e4nen\u201c",
-      "\u201eEr geht \u00fcber Tische, St\u00fchle und B\u00e4nke.\u201c",
-      "\u201eGuten Morgen, guten Tag, gute Nacht.\u201c"
+      "„Freiheit, Gleichheit, Brüderlichkeit“",
+      "„Blut, Schweiß und Tränen“",
+      "„Er geht über Tische, Stühle und Bänke.“",
+      "„Guten Morgen, guten Tag, gute Nacht.“"
     ]
   },
   {
     name: "Vergleich",
-    definition: "Verkn\u00fcpfung zweier Bereiche durch ein Vergleichswort: \u201ewie\u201c oder \u201eals ob\u201c.",
+    definition: "Verknüpfung zweier Bereiche durch ein Vergleichswort: „wie“ oder „als ob“.",
     examples: [
-      "\u201eStark wie ein L\u00f6we\u201c",
-      "\u201eSchnell wie der Wind\u201c",
-      "\u201eSie ist sch\u00f6n wie eine Rose.\u201c",
-      "\u201eKalt wie Eis\u201c",
-      "\u201eAls ob ihm das Ereignis nichts ausmache.\u201c"
+      "„Stark wie ein Löwe“",
+      "„Schnell wie der Wind“",
+      "„Sie ist schön wie eine Rose.“",
+      "„Kalt wie Eis“",
+      "„Als ob ihm das Ereignis nichts ausmache.“"
     ]
   },
   {
     name: "Wiederholung",
-    definition: "Mehrfache Nennung desselben Wortes oder derselben Wendung zur Verst\u00e4rkung.",
+    definition: "Mehrfache Nennung desselben Wortes oder derselben Wendung zur Verstärkung.",
     examples: [
-      "\u201eO Freunde, nicht diese T\u00f6ne!\u201c",
-      "\u201eEin Meer von Tr\u00e4nen, ein Meer von Schmerz.\u201c",
-      "\u201eNein, nein, nein!\u201c",
-      "\u201eIch habe es dir schon tausendmal gesagt, tausendmal!\u201c"
+      "„O Freunde, nicht diese Töne!“",
+      "„Ein Meer von Tränen, ein Meer von Schmerz.“",
+      "„Nein, nein, nein!“",
+      "„Ich habe es dir schon tausendmal gesagt, tausendmal!“"
     ]
   },
   {
     name: "Zeugma",
     definition: "Ein Verb wird auf mehrere Satzglieder bezogen, passt aber nur zu einem davon wirklich sinnvoll.",
     examples: [
-      "\u201eNimm dir Zeit und nicht das Leben!\u201c",
-      "\u201eEr schlug die Scheibe und danach den Heimweg ein.\u201c",
-      "\u201eIch hob den Blick und eine Tasche auf.\u201c",
-      "\u201eEr verlor seinen Hut und die Geduld.\u201c"
+      "„Nimm dir Zeit und nicht das Leben!“",
+      "„Er schlug die Scheibe und danach den Heimweg ein.“",
+      "„Ich hob den Blick und eine Tasche auf.“",
+      "„Er verlor seinen Hut und die Geduld.“"
     ]
   },
 ];
@@ -704,7 +704,7 @@ function FlashcardMode() {
         {!flipped ? (
           <div className="flashcard-front" onClick={() => setFlipped(true)} style={{ cursor: "pointer" }}>
             <div className="flashcard-name">{current.name}</div>
-            <div className="flashcard-hint">Klicken zum Aufdecken \u2193</div>
+            <div className="flashcard-hint">Klicken zum Aufdecken ↓</div>
           </div>
         ) : (
           <div className="flashcard-back">
@@ -717,9 +717,9 @@ function FlashcardMode() {
           </div>
         )}
         <div className="btn-row">
-          <button className="btn btn-ghost" onClick={prev} disabled={idx===0}>\u2190 Zur\u00fcck</button>
-          {idx===total-1 ? <button className="btn btn-primary" onClick={restart}>Neu mischen \u21bb</button>
-            : <button className="btn btn-primary" onClick={next}>Weiter \u2192</button>}
+          <button className="btn btn-ghost" onClick={prev} disabled={idx===0}>← Zurück</button>
+          {idx===total-1 ? <button className="btn btn-primary" onClick={restart}>Neu mischen ↻</button>
+            : <button className="btn btn-primary" onClick={next}>Weiter →</button>}
         </div>
       </div>
     </div>
@@ -753,9 +753,9 @@ function MultipleChoiceMode() {
   if (!questions) return null;
   if (done) {
     const pct = Math.round(score / questions.length * 100);
-    let msg = "Weiter \u00fcben!";
-    if (pct >= 90) msg = "Hervorragend! \ud83c\udf89";
-    else if (pct >= 70) msg = "Sehr gut gemacht! \ud83d\udc4f";
+    let msg = "Weiter üben!";
+    if (pct >= 90) msg = "Hervorragend! 🎉";
+    else if (pct >= 70) msg = "Sehr gut gemacht! 👏";
     else if (pct >= 50) msg = "Gut, aber da geht noch mehr!";
     return (
       <div className="card-area fade-in"><div className="card"><div className="results">
@@ -795,10 +795,10 @@ function MultipleChoiceMode() {
           })}
         </div>
         {selected && <div className={"feedback " + (selected===q.correctName ? "correct" : "wrong")}>
-          {selected===q.correctName ? "Richtig! \u2713" : "Leider falsch. Die richtige Antwort ist: " + q.correctName}
+          {selected===q.correctName ? "Richtig! ✓" : "Leider falsch. Die richtige Antwort ist: " + q.correctName}
         </div>}
         {selected && <div className="btn-row" style={{ justifyContent: "flex-end" }}>
-          <button className="btn btn-primary" onClick={nextQ}>{qIdx+1>=questions.length ? "Ergebnis anzeigen" : "N\u00e4chste Frage \u2192"}</button>
+          <button className="btn btn-primary" onClick={nextQ}>{qIdx+1>=questions.length ? "Ergebnis anzeigen" : "Nächste Frage →"}</button>
         </div>}
       </div>
     </div>
@@ -831,7 +831,7 @@ function FreeTextMode() {
   useEffect(() => { start(); }, []);
 
   const normalize = (s) => s.toLowerCase().trim()
-    .replace(/\u00e4/g,"ae").replace(/\u00f6/g,"oe").replace(/\u00fc/g,"ue").replace(/\u00df/g,"ss")
+    .replace(/ä/g,"ae").replace(/ö/g,"oe").replace(/ü/g,"ue").replace(/ß/g,"ss")
     .replace(/[^a-z]/g,"");
 
   const checkAnswer = () => {
@@ -849,9 +849,9 @@ function FreeTextMode() {
   if (!questions) return null;
   if (done) {
     const pct = Math.round(score / questions.length * 100);
-    let msg = "Weiter \u00fcben!";
-    if (pct >= 90) msg = "Hervorragend! \ud83c\udf89";
-    else if (pct >= 70) msg = "Sehr gut gemacht! \ud83d\udc4f";
+    let msg = "Weiter üben!";
+    if (pct >= 90) msg = "Hervorragend! 🎉";
+    else if (pct >= 70) msg = "Sehr gut gemacht! 👏";
     else if (pct >= 50) msg = "Gut, aber da geht noch mehr!";
     return (
       <div className="card-area fade-in"><div className="card"><div className="results">
@@ -880,17 +880,17 @@ function FreeTextMode() {
         <div className="ft-example">{q.example}</div>
         <div className="ft-input-row">
           <input ref={inputRef} className={"ft-input" + (submitted ? (isCorrect ? " ft-correct" : " ft-wrong") : "")}
-            type="text" placeholder="Stilmittel eingeben\u2026" value={input}
+            type="text" placeholder="Stilmittel eingeben…" value={input}
             onChange={e => setInput(e.target.value)}
             onKeyDown={e => { if (e.key==="Enter" && !submitted) checkAnswer(); if (e.key==="Enter" && submitted) nextQ(); }}
             disabled={submitted} autoFocus />
-          {!submitted && <button className="btn btn-primary" onClick={checkAnswer}>Pr\u00fcfen</button>}
+          {!submitted && <button className="btn btn-primary" onClick={checkAnswer}>Prüfen</button>}
         </div>
         {submitted && <div className={"feedback " + (isCorrect ? "correct" : "wrong")}>
-          {isCorrect ? "Richtig! \u2713" : <span>Leider falsch. Die richtige Antwort ist: <strong>{q.correctName}</strong><br /><span style={{ fontWeight: 400, opacity: 0.85 }}>{q.definition}</span></span>}
+          {isCorrect ? "Richtig! ✓" : <span>Leider falsch. Die richtige Antwort ist: <strong>{q.correctName}</strong><br /><span style={{ fontWeight: 400, opacity: 0.85 }}>{q.definition}</span></span>}
         </div>}
         {submitted && <div className="btn-row" style={{ justifyContent: "flex-end" }}>
-          <button className="btn btn-primary" onClick={nextQ}>{qIdx+1>=questions.length ? "Ergebnis anzeigen" : "N\u00e4chste Frage \u2192"}</button>
+          <button className="btn btn-primary" onClick={nextQ}>{qIdx+1>=questions.length ? "Ergebnis anzeigen" : "Nächste Frage →"}</button>
         </div>}
       </div>
     </div>
@@ -903,7 +903,7 @@ function App() {
     <div className="app">
       <div className="nav-header">
         <h1>Rhetorische Stilmittel</h1>
-        <p>{STILMITTEL.length} Stilmittel. Drei übungsmodi</p>
+        <p>{STILMITTEL.length} Stilmittel · Drei Übungsmodi</p>
         <div className="mode-tabs">
           <button className={"mode-tab" + (mode==="flash" ? " active" : "")} onClick={() => setMode("flash")}>Karteikarten</button>
           <button className={"mode-tab" + (mode==="mc" ? " active" : "")} onClick={() => setMode("mc")}>Multiple Choice</button>
