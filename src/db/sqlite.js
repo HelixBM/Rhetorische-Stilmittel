@@ -6,10 +6,10 @@ export async function initDatabase() {
   if (db) return db;
 
   const SQL = await initSqlJs({
-    locateFile: file => `/${file}`
+    locateFile: file => `${file}`
   });
 
-  const response = await fetch('/stilmittel.sqlite');
+  const response = await fetch('stilmittel.sqlite');
   const buffer = await response.arrayBuffer();
   db = new SQL.Database(new Uint8Array(buffer));
   return db;

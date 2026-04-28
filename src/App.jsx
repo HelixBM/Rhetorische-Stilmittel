@@ -497,24 +497,29 @@ function App() {
 
   useEffect(() => {
     async function loadData() {
-      const db = await initDatabase();
-      const stilmittel = getAllStilmittel(db);
-      setData(stilmittel);
-      setActiveData(stilmittel);
-      
-      const urlParams = new URLSearchParams(window.location.search);
-      const challengeData = urlParams.get('challenge');
-      if (challengeData) {
-        try {
-          const ids = JSON.parse(atob(challengeData));
-          const challengeItems = stilmittel.filter(s => ids.includes(s.id));
-          if (challengeItems.length > 0) {
-            setChallenge(challengeItems);
-            setMode("challenge");
-          }
-        } catch (e) { console.error("Invalid challenge link"); }
+      try {
+        const db = await initDatabase();
+        const stilmittel = getAllStilmittel(db);
+        setData(stilmittel);
+        setActiveData(stilmittel);
+        
+        const urlParams = new URLSearchParams(window.location.search);
+        const challengeData = urlParams.get('challenge');
+        if (challengeData) {
+          try {
+            const ids = JSON.parse(atob(challengeData));
+            const challengeItems = stilmittel.filter(s => ids.includes(s.id));
+            if (challengeItems.length > 0) {
+              setChallenge(challengeItems);
+              setMode("challenge");
+            }
+          } catch (e) { console.error("Invalid challenge link", e); }
+        }
+      } catch (err) {
+        console.error("Failed to load database:", err);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     }
     loadData();
   }, []);
