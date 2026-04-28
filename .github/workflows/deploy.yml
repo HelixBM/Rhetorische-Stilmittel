@@ -40,10 +40,10 @@ jobs:
         run: npm install
       - name: Build Database and App
         run: |
-          node scripts/build-db.cjs
           mkdir -p public
+          node scripts/build-db.cjs
           cp node_modules/sql.js/dist/sql-wasm.wasm public/
-          npm run build
+          npx vite build
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
