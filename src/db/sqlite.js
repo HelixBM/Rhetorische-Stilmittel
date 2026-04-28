@@ -6,10 +6,18 @@ export async function initDatabase() {
   if (db) return db;
 
   const SQL = await initSqlJs({
-    locateFile: file => `${file}`
+    locateFile: file => {
+      // Use the production-ready WASM from the dist/public folder
+      // In production (GitHub Pages), this needs to be relative to the base
+      return `${import.meta.env.BASE_URL}${file}`.replace(/\/+/g, '/');
+    }
   });
 
-  const response = await fetch('stilmittel.sqlite');
+  const dbPath = `${import.meta.env.BASE_URL}stilmittel.sqlite`.replace(/\/+/g, '/');
+  const response = await fetch(dbPath);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch database: ${response.status} ${response.statusText}`);
+  }
   const buffer = await response.arrayBuffer();
   db = new SQL.Database(new Uint8Array(buffer));
   return db;

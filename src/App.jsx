@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { initDatabase, getAllStilmittel } from './db/sqlite';
 import { getAllProgress, updateProgress, getDueItems } from './db/stats';
 import { openDB } from 'idb';
+import { STILMITTEL } from './data';
 
 // --- Constants ---
 const CUSTOM_SETS_STORE = 'custom-sets';
@@ -500,29 +501,41 @@ function App() {
       try {
         const db = await initDatabase();
         const stilmittel = getAllStilmittel(db);
-        setData(stilmittel);
-        setActiveData(stilmittel);
-        
-        const urlParams = new URLSearchParams(window.location.search);
-        const challengeData = urlParams.get('challenge');
-        if (challengeData) {
-          try {
-            const ids = JSON.parse(atob(challengeData));
-            const challengeItems = stilmittel.filter(s => ids.includes(s.id));
-            if (challengeItems.length > 0) {
-              setChallenge(challengeItems);
-              setMode("challenge");
-            }
-          } catch (e) { console.error("Invalid challenge link", e); }
+        if (stilmittel && stilmittel.length > 0) {
+          setData(stilmittel);
+          setActiveData(stilmittel);
+        } else {
+          throw new Error("Database is empty");
         }
       } catch (err) {
-        console.error("Failed to load database:", err);
+        console.error("Failed to load database, using fallback data:", err);
+        // Fallback to static data if DB fails
+        const fallbackData = STILMITTEL.map((s, idx) => ({ ...s, id: idx + 1 }));
+        setData(fallbackData);
+        setActiveData(fallbackData);
       } finally {
         setLoading(false);
       }
     }
     loadData();
   }, []);
+
+  useEffect(() => {
+    if (!data) return;
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    const challengeData = urlParams.get('challenge');
+    if (challengeData) {
+      try {
+        const ids = JSON.parse(atob(challengeData));
+        const challengeItems = data.filter(s => ids.includes(s.id));
+        if (challengeItems.length > 0) {
+          setChallenge(challengeItems);
+          setMode("challenge");
+        }
+      } catch (e) { console.error("Invalid challenge link", e); }
+    }
+  }, [data]);
 
   useEffect(() => {
     localStorage.setItem('darkMode', isDarkMode);
