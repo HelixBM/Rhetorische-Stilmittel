@@ -1,4 +1,4 @@
-const sqlite3 = require('sqlite3').verbose();
+const Database = require('better-sqlite3');
 const fs = require('fs');
 const path = require('path');
 
@@ -9,42 +9,29 @@ if (fs.existsSync(dbPath)) {
     fs.unlinkSync(dbPath);
 }
 
-const db = new sqlite3.Database(dbPath);
+const db = new Database(dbPath);
 
 const dataContent = fs.readFileSync(dataPath, 'utf8');
 const arrayMatch = dataContent.match(/export const STILMITTEL = (\[[\s\S]*?\]);/);
 const STILMITTEL = eval(arrayMatch[1]);
 
-db.serialize(() => {
-    db.run("CREATE TABLE stilmittel (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, definition TEXT)");
-    db.run("CREATE TABLE examples (id INTEGER PRIMARY KEY AUTOINCREMENT, stilmittel_id INTEGER, example TEXT, FOREIGN KEY(stilmittel_id) REFERENCES stilmittel(id))");
+db.exec("CREATE TABLE stilmittel (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, definition TEXT)");
+db.exec("CREATE TABLE examples (id INTEGER PRIMARY KEY AUTOINCREMENT, stilmittel_id INTEGER, example TEXT, FOREIGN KEY(stilmittel_id) REFERENCES stilmittel(id))");
 
-    let finishedStil = 0;
-    let totalExamples = STILMITTEL.reduce((acc, curr) => acc + curr.examples.length, 0);
-    let finishedExamples = 0;
+const insertStil = db.prepare("INSERT INTO stilmittel (name, definition) VALUES (?, ?)");
+const insertEx = db.prepare("INSERT INTO examples (stilmittel_id, example) VALUES (?, ?)");
 
-    STILMITTEL.forEach(item => {
-        db.run("INSERT INTO stilmittel (name, definition) VALUES (?, ?)", [item.name, item.definition], function(err) {
-            if (err) return console.error(err.message);
-            const stilId = this.lastID;
-            finishedStil++;
-            
-            item.examples.forEach(ex => {
-                db.run("INSERT INTO examples (stilmittel_id, example) VALUES (?, ?)", [stilId, ex], function(err) {
-                    if (err) return console.error(err.message);
-                    finishedExamples++;
-                    checkDone();
-                });
-            });
-        });
-    });
-
-    function checkDone() {
-        if (finishedStil === STILMITTEL.length && finishedExamples === totalExamples) {
-            db.close((err) => {
-                if (err) return console.error(err.message);
-                console.log('Database built successfully at ' + dbPath);
-            });
-        }
+const insertMany = db.transaction((data) => {
+  for (const item of data) {
+    const result = insertStil.run(item.name, item.definition);
+    const stilId = result.lastInsertRowid;
+    for (const ex of item.examples) {
+      insertEx.run(stilId, ex);
     }
+  }
 });
+
+insertMany(STILMITTEL);
+
+db.close();
+console.log('Database built successfully at ' + dbPath);
