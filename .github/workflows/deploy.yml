@@ -38,8 +38,12 @@ jobs:
           node-version: 20
       - name: Install dependencies
         run: npm install
-      - name: Build
-        run: npm run build
+      - name: Build Database and App
+        run: |
+          node scripts/build-db.cjs
+          mkdir -p public
+          cp node_modules/sql.js/dist/sql-wasm.wasm public/
+          npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
