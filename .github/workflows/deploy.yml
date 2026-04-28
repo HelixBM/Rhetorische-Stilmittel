@@ -21,6 +21,9 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   # Single deploy job since we're just deploying; no build step for now as we use the pre-built dist
   # Actually, we SHOULD build it in the runner to be safe.
@@ -35,13 +38,14 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
       - name: Install dependencies
-        run: npm install
+        run: npm ci || npm install
       - name: Build Database and App
         run: |
           node scripts/build-db.cjs
           cp node_modules/sql.js/dist/sql-wasm.wasm public/
+          chmod +x node_modules/.bin/vite
           npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v4
