@@ -42,7 +42,7 @@ jobs:
         run: |
           node scripts/build-db.cjs
           cp node_modules/sql.js/dist/sql-wasm.wasm public/
-          npx vite build
+          npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
