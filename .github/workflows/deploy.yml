@@ -41,10 +41,8 @@ jobs:
           node-version: 24
       - name: Install dependencies
         run: npm ci || npm install
-      - name: Build Database and App
+      - name: Build App
         run: |
-          node scripts/build-db.cjs
-          cp node_modules/sql.js/dist/sql-wasm.wasm public/
           chmod +x node_modules/.bin/vite
           npm run build
       - name: Setup Pages

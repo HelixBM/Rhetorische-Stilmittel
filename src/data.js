@@ -1,4 +1,4 @@
-export const STILMITTEL = [
+const STILMITTEL_RAW = [
   {
     name: "Allegorie",
     definition: "Erweiterte Metapher: Ein abstrakter Begriff wird über einen längeren Textabschnitt hinweg durch ein konkretes Bild dargestellt, oft als Personifikation.",
@@ -401,3 +401,8 @@ export const STILMITTEL = [
     ]
   },
 ];
+
+export const STILMITTEL = STILMITTEL_RAW.map((item, index) => ({
+  ...item,
+  id: Number.isInteger(item.id) ? item.id : index + 1,
+}));
